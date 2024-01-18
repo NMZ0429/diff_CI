@@ -1,6 +1,9 @@
 name: "Count the number of different lines in a PR"
 author: "NMZ0429"
 description: "Count the number of different lines in a PR"
+branding:
+  icon: "git-pull-request"
+  color: "blue"
 inputs:
   github-token:
     description: "GITHUB_TOKEN"
