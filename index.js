@@ -20,6 +20,7 @@ octokit.pulls
 			(line) => line.startsWith("+ ") || line.startsWith("- ")
 		).length;
 		// TODO: return the result
+		console.log(count);
 	})
 	.catch((err) => {
 		core.setFailed(err.message);

@@ -11,8 +11,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: "checkout"
+    - name: "checkout action code"
       uses: "actions/checkout@v2"
+      with:
+        repository: "NMZ0429/diff_CI"
+        path: ".github/actions/diff_CI"
     - name: "setup node"
       uses: "actions/setup-node@v2"
       with:
@@ -20,7 +23,7 @@ runs:
         cache: "npm"
     - name: "install dependencies"
       shell: "bash"
-      run: "npm install"
+      run: "cd .github/actions/diff_CI && npm install"
     - name: "count the number of different lines in a PR"
       shell: "bash"
-      run: "node index.js"
+      run: "node .github/actions/diff_CI/index.js"
