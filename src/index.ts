@@ -1,4 +1,4 @@
-import { getInput, setFailed } from "@actions/core";
+import { getInput, setFailed, error, warning, notice } from "@actions/core";
 import { Octokit } from "@octokit/rest";
 
 const { GITHUB_REPOSITORY, GITHUB_SHA } = process.env;
@@ -11,6 +11,8 @@ if (!GITHUB_SHA) {
 const [owner, repo] = GITHUB_REPOSITORY.split("/");
 const pull_number = process.env.GITHUB_REF.split("/").slice(-2)[0];
 const token = getInput("github-token");
+const goodNumLines = +getInput("good-num-lines");
+const maxNumLines = +getInput("max-num-lines");
 const octokit = new Octokit({ auth: `token ${token}` });
 octokit.pulls
 	.get({
@@ -26,8 +28,22 @@ octokit.pulls
 		const count = lines.filter(
 			(line) => line.startsWith("+ ") || line.startsWith("- ")
 		).length;
-		// TODO: return the result
-		console.log(count);
+		if (count > maxNumLines) {
+			setFailed(
+				`Error: ${owner}/${repo}#${pull_number} has too many lines (${count} > ${maxNumLines})`
+			);
+			error(
+				`${owner}/${repo}#${pull_number} has too many lines (${count} > ${maxNumLines})`
+			);
+		} else if (count > goodNumLines) {
+			warning(
+				`${owner}/${repo}#${pull_number} has too many lines (${count} > ${goodNumLines})`
+			);
+		} else {
+			notice(
+				`${owner}/${repo}#${pull_number} has a good number of lines (${count} < ${goodNumLines})`
+			);
+		}
 	})
 	.catch((err) => {
 		setFailed(`Error: ${owner}/${repo}#${pull_number} ${err.message}`);

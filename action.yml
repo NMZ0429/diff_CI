@@ -8,10 +8,17 @@ inputs:
   github-token:
     description: "GITHUB_TOKEN"
     required: true
+  good-num-lines:
+    description: "The number of lines to warn"
+    required: false
+    default: "300"
+  max-num-lines:
+    description: "The maximum number of lines to count"
+    required: false
+    default: "500"
 outputs:
   num-diff-lines:
     description: "The number of different lines in a PR"
-
 runs:
   using: "node20"
   main: "dist/index.js"
