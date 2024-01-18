@@ -13,5 +13,5 @@ outputs:
     description: "The number of different lines in a PR"
 
 runs:
-  using: "node12"
+  using: "node20"
   main: "dist/index.js"
