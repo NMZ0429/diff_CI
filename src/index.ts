@@ -30,5 +30,5 @@ octokit.pulls
 		console.log(count);
 	})
 	.catch((err) => {
-		setFailed(err.message);
+		setFailed(`Error: ${owner}/${repo}#${pull_number} ${err.message}`);
 	});
