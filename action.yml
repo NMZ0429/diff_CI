@@ -1,5 +1,5 @@
 name: "Count the number of different lines in a PR"
-author: "NMZ"
+author: "NMZ0429"
 description: "Count the number of different lines in a PR"
 inputs:
   github-token:
@@ -8,4 +8,3 @@ inputs:
 runs:
   using: "node12"
   main: "index.js"
-  pre: "npm ci"
