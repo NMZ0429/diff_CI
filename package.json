@@ -1,6 +1,20 @@
 {
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@octokit/rest": "^20.0.2"
-  }
+    "@octokit/rest": "^20.0.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "build": "yarn checkTs && webpack",
+    "checkTs": "tsc -noEmit"
+  },
+  "name": "diff_CI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/NMZ0429/diff_CI.git",
+  "author": "NMZ0429",
+  "license": "MIT"
 }

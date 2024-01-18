@@ -8,22 +8,10 @@ inputs:
   github-token:
     description: "GITHUB_TOKEN"
     required: true
+outputs:
+  num-diff-lines:
+    description: "The number of different lines in a PR"
+
 runs:
-  using: "composite"
-  steps:
-    - name: "checkout action code"
-      uses: "actions/checkout@v2"
-      with:
-        repository: "NMZ0429/diff_CI"
-        path: ".github/actions/diff_CI"
-    - name: "setup node"
-      uses: "actions/setup-node@v2"
-      with:
-        node-version: "12"
-        cache: "npm"
-    - name: "install dependencies"
-      shell: "bash"
-      run: "cd .github/actions/diff_CI && npm install"
-    - name: "count the number of different lines in a PR"
-      shell: "bash"
-      run: "node .github/actions/diff_CI/index.js"
+  using: "node12"
+  main: "dist/index.js"

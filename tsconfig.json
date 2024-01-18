@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "module": "es2022",
+        "target": "es2017",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
