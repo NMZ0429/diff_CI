@@ -26,7 +26,9 @@ octokit.pulls
 	.then(({ data }) => {
 		const lines = data.toString().split("\n");
 		const count = lines.filter(
-			(line) => line.startsWith("+ ") || line.startsWith("- ")
+			(line) =>
+				(line.startsWith("+") && !line.startsWith("+++")) ||
+				(line.startsWith("-") && !line.startsWith("---"))
 		).length;
 		if (count > maxNumLines) {
 			setFailed(
