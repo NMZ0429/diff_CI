@@ -14,6 +14,7 @@ const token = getInput("github-token");
 const goodNumLines = +getInput("good-num-lines");
 const maxNumLines = +getInput("max-num-lines");
 const octokit = new Octokit({ auth: `token ${token}` });
+
 octokit.pulls
 	.get({
 		owner: owner,
@@ -38,6 +39,7 @@ octokit.pulls
 				`${owner}/${repo}#${pull_number} has too many lines (${count} > ${maxNumLines})`
 			);
 		} else if (count > goodNumLines) {
+			postWarning(count);
 			warning(
 				`${owner}/${repo}#${pull_number} has too many lines (${count} > ${goodNumLines})`
 			);
@@ -50,3 +52,12 @@ octokit.pulls
 	.catch((err) => {
 		setFailed(`Error: ${owner}/${repo}#${pull_number} ${err.message}`);
 	});
+
+function postWarning(lineCount: number) {
+	octokit.issues.createComment({
+		owner: owner,
+		repo: repo,
+		issue_number: +pull_number,
+		body: `## Commit Size Warning\n\nThis PR has too many diff ines (${lineCount} > ${goodNumLines})`,
+	});
+}
