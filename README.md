@@ -32,7 +32,7 @@ jobs:
     permissions:
       pull-requests: write # required to post a warning
     steps:
-      - uses: NMZ0429/diff_CI@v1.0
+      - uses: NMZ0429/diff_CI@v1.1
         with:
           good-num-lines: 200 # optional: default is 300
           max-num-lines: 400 # optional: default is 500
