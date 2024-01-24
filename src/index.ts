@@ -58,6 +58,6 @@ function postWarning(lineCount: number) {
 		owner: owner,
 		repo: repo,
 		issue_number: +pull_number,
-		body: `## Commit Size Warning\n\nThis PR has too many diff ines (${lineCount} > ${goodNumLines})`,
+		body: `## Commit Size Warning\n\nThis PR has too many diff lines (${lineCount} > ${goodNumLines})`,
 	});
 }
