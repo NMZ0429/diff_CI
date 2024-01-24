@@ -29,8 +29,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write # required to post a warning
+    permissions: write-all # required to post a warning
     steps:
       - uses: NMZ0429/diff_CI@v1.1
         with:
