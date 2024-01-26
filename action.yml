@@ -16,6 +16,10 @@ inputs:
     description: "The maximum number of lines to count"
     required: false
     default: "500"
+  ignore:
+    description: "Files to ignore (gitignore format)"
+    required: false
+    default: "[]"
 outputs:
   num-diff-lines:
     description: "The number of different lines in a PR"
