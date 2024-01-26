@@ -35,6 +35,10 @@ jobs:
         with:
           good-num-lines: 200 # optional: default is 300
           max-num-lines: 400 # optional: default is 500
-          ignore: "['**/*.d.ts', '**/*.jpg']" # optional: default is "[]" 
+          ignore: '["**/*.d.ts", "**/*.jpg"]' # optional: default is '[]'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+#### Warning
+
+- Please use single quotes for the `ignore` input. Then use double quotes inside the single quotes.

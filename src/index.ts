@@ -14,8 +14,6 @@ const pull_number = process.env.GITHUB_REF.split("/").slice(-2)[0];
 const token = getInput("github-token");
 const goodNumLines = +getInput("good-num-lines");
 const maxNumLines = +getInput("max-num-lines");
-const dead = getInput("ignore");
-notice(`ignorePatterns: ${dead}`);
 const ignorePatterns = JSON.parse(getInput("ignore"));
 
 const octokit = new Octokit({ auth: `token ${token}` });
