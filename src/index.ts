@@ -15,8 +15,32 @@ const token = getInput("github-token");
 const goodNumLines = +getInput("good-num-lines");
 const maxNumLines = +getInput("max-num-lines");
 const ignorePatterns = JSON.parse(getInput("ignore"));
+const disableBranch = getInput("disable-branch");
 
 const octokit = new Octokit({ auth: `token ${token}` });
+const getBaseBranch = async (
+	owner: string,
+	repo: string,
+	pull_number: number
+) => {
+	const { data } = await octokit.pulls.get({
+		owner,
+		repo,
+		pull_number,
+	});
+
+	return data.base.ref;
+};
+
+if (disableBranch) {
+	const baseBranch = await getBaseBranch(owner, repo, +pull_number);
+	if (baseBranch === disableBranch) {
+		notice(
+			`${owner}/${repo}#${pull_number} is targeting ${disableBranch}, skipping`
+		);
+		process.exit(0);
+	}
+}
 
 octokit.pulls
 	.get({
