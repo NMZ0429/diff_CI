@@ -36,6 +36,7 @@ jobs:
           good-num-lines: 200 # optional: default is 300
           max-num-lines: 400 # optional: default is 500
           ignore: '["**/*.d.ts", "**/*.jpg"]' # optional: default is '[]'
+          disable-branch: "main" # optional: default is ""
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
