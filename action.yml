@@ -20,10 +20,10 @@ inputs:
     description: "Files to ignore (gitignore format)"
     required: false
     default: "[]"
-  disable-branch:
+  disable-branches:
     description: "If the PR is towards the specified branch, disable the action"
     required: false
-    default: ""
+    default: "[]"
 outputs:
   num-diff-lines:
     description: "The number of different lines in a PR"
